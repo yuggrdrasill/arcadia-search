@@ -1,0 +1,7 @@
+            <ul ng-show="isPagination" class="page-list">
+              <li ng-repeat="page in pagination" 
+                class="{{page.class}}" 
+                ng-click="pageMove(page.name)">
+              <span>{{page.name}}</span>
+              </li>
+            </ul>

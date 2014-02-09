@@ -1,0 +1,153 @@
+/*
+Place custom styles here. Thes styles are ment to be loaded after
+bootstrap, so the may override it's behavior.
+*/
+
+@pink:		#ff7799;
+.thumbnail {
+  display: block;
+  padding: 4px;
+  line-height: @baseLineHeight;
+  border: 1px solid #ddd;
+  .border-radius(4px);
+  .box-shadow(0 1px 3px rgba(0,0,0,.055));
+  .transition(all .2s ease-in-out);
+}
+// Nav headers (for dropdowns and lists)
+.nav-header {
+  display: block;
+  padding: 3px 15px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1.5;
+  color: @grayLight;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  text-transform: uppercase;
+}
+// Actual tabs (as links)
+.nav-tabs > li > a {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  line-height: 1.5;
+  border: 1px solid transparent;
+  .border-radius(4px 4px 0 0);
+  &:hover {
+    border-color: @grayLighter @grayLighter #ddd;
+  }
+}
+/*.pagination a,*/
+/*.pagination span {*/
+  /*float: left;*/
+  /*padding: 0 14px;*/
+  /*line-height: 1.9;*/
+  /*text-decoration: none;*/
+  /*background-color: @paginationBackground;*/
+  /*border: 1px solid @paginationBorder;*/
+  /*border-left-width: 0;*/
+/*}*/
+.brand{
+  color: @blueDark;
+  font-size:135%;
+}
+.navbar{
+  border-bottom: @redDark 5px solid;
+}
+
+.wrapper{
+  // width:95%;
+  background-color: #FCFCFC;
+}
+
+
+.tooltip {
+  position: absolute;
+  z-index: @zindexTooltip;
+  display: block;
+  visibility: visible;
+  padding: 5px;
+  font-size: .9em;
+  .opacity(0);
+  &.in     { .opacity(80); }
+  &.top    { margin-top:  -3px; }
+  &.right  { margin-left:  3px; }
+  &.bottom { margin-top:   3px; }
+  &.left   { margin-left: -3px; }
+}
+
+
+.brand{
+  float: none !important;
+  padding: .3em 1em !important;
+  margin: 0 0 0 -1em !important;
+  text-shadow: 1px 1px .5px rgba(255,255,255,1);
+}
+.wrapper > .container{
+  padding:1em;
+}
+
+// Reset fonts for other sizes
+.btn-group > .btn-mini {
+  font-size: .7em;
+}
+.btn-group > .btn-small {
+  font-size: .8em;
+}
+.btn-group > .btn-large {
+  font-size: 1em;
+}
+
+// Large
+.btn-large {
+  padding: 9px 14px;
+  font-size: @baseFontSize + 2px;
+  line-height: normal;
+  .border-radius(5px);
+}
+.btn-large [class^="icon-"] {
+  margin-top: 2px;
+}
+
+// Small
+.btn-small {
+  padding: 3px 9px;
+  font-size: @baseFontSize - .3em;
+  line-height: @baseLineHeight - .05;
+}
+.btn-small [class^="icon-"] {
+  margin-top: 0;
+}
+
+// Mini
+.btn-mini {
+  padding: 2px 6px;
+  font-size: @baseFontSize - .4em;
+  line-height: @baseLineHeight - .1;
+}
+
+a{
+  color:#007cb0;
+  text-decoration: underline;
+
+  &:link{
+    color:#007cb0;
+  }
+  &:visited {
+    color:@purple;
+  }
+  &:hover{
+    color:@yellow;
+  }
+  &:active{
+    color: @red;
+  }
+}
+
+.table{
+  th,td{
+    line-height: 1.5;
+  }
+}
+
+ol,ul{
+  margin: 0;
+}

@@ -1,0 +1,410 @@
+
+/*!
+ * Bootstrap v2.2.1
+ *
+ * Copyright 2012 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ */
+
+// CSS Reset
+@import "/app/styles/bootstrap/_reset.less";
+
+// Core variables and mixins
+// Your custom theme
+@import "/app/styles/themes/custom/_variables.less";
+/*@import "/app/styles/bootstrap/_variables.less"; // Modify this for custom colors, font-sizes, etc*/
+@import "/app/styles/bootstrap/_mixins.less";
+
+// Grid system and page structure
+@import "/app/styles/bootstrap/_scaffolding.less";
+@import "/app/styles/bootstrap/_grid.less";
+@import "/app/styles/bootstrap/_layouts.less";
+
+// Base CSS
+@import "/app/styles/bootstrap/_type.less";
+@import "/app/styles/bootstrap/_code.less";
+@import "/app/styles/bootstrap/_forms.less";
+@import "/app/styles/bootstrap/_tables.less";
+
+// Components: common
+/*@import "/app/styles/bootstrap/_sprites.less";*/
+@import "/app/styles/bootstrap/_dropdowns.less";
+@import "/app/styles/bootstrap/_wells.less";
+@import "/app/styles/bootstrap/_component-animations.less";
+@import "/app/styles/bootstrap/_close.less";
+
+// Components: Buttons & Alerts
+@import "/app/styles/bootstrap/_buttons.less";
+@import "/app/styles/bootstrap/_button-groups.less";
+@import "/app/styles/bootstrap/_alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
+
+// Components: Nav
+@import "/app/styles/bootstrap/_navs.less";
+@import "/app/styles/bootstrap/_navbar.less";
+@import "/app/styles/bootstrap/_breadcrumbs.less";
+@import "/app/styles/bootstrap/_pagination.less";
+@import "/app/styles/bootstrap/_pager.less";
+
+// Components: Popovers
+@import "/app/styles/bootstrap/_modals.less";
+@import "/app/styles/bootstrap/_tooltip.less";
+@import "/app/styles/bootstrap/_popovers.less";
+
+// Components/app/styles/bootstrap/: Misc
+@import "/app/styles/bootstrap/_thumbnails.less";
+@import "/app/styles/bootstrap/_media.less";
+@import "/app/styles/bootstrap/_labels-badges.less";
+@import "/app/styles/bootstrap/_progress-bars.less";
+@import "/app/styles/bootstrap/_accordion.less";
+@import "/app/styles/bootstrap/_carousel.less";
+@import "/app/styles/bootstrap/_hero-unit.less";
+
+// Utility classes
+@import "/app/styles/bootstrap/_utilities.less"; // Has to be last to override when necessary
+// RESPONSIVE CLASSES
+// ------------------
+
+@import "/app/styles/bootstrap/_responsive-utilities.less";
+
+
+// MEDIA QUERIES
+// ------------------
+
+// Large desktops
+@import "/app/styles/bootstrap/_responsive-1200px-min.less";
+
+// Tablets to regular desktops
+@import "/app/styles/bootstrap/_responsive-768px-979px.less";
+
+// Phones to portrait tablets and narrow desktops
+@import "/app/styles/bootstrap/_responsive-767px-max.less";
+
+
+// RESPONSIVE NAVBAR
+// ------------------
+
+// From 979px and below, show a button to toggle navbar contents
+@import "/app/styles/bootstrap/_responsive-navbar.less";
+
+
+
+// AngularJS
+@import "/app/styles/sapling/_angular.less";
+@import "/app/styles/sapling/angular-ui.less";
+
+/*@import "/app/styles/vendor/animation.css"*/
+/*@import "/app/styles/vendor/fontello.less"*/
+
+/*font-face {*/
+  /* font-weight: normal; */
+  /* font-style: normal; */
+  /* font-family: 'fontello'; */
+  /* src: url("../font/fontello.eot"); */
+  /* src: url("../font/fontello.eot?#iefix") format('embedded-opentype'), url("../font/fontello.woff") format('woff'), url("../font/fontello.ttf") format('truetype'), url("../font/fontello.svg#fontello") format('svg'); */
+/*}*/
+
+@import "/app/styles/vendor/elusive-webfont.less";
+@import "/app/styles/vendor/select2.less";
+
+// Your custom theme
+@import "/app/styles/themes/custom/_overrides.less";
+@import "/app/styles/themes/pagination.less";
+
+body{
+  line-height: 1.6;
+}
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+ul{
+  list-style-type: none;
+}
+
+li[fadey] {
+  transition: all 2s default;
+  -o-transition: all 2s default;
+  -moz-transition: all 2s default;
+  -webkit-transition: all 2s default;
+
+  max-height: 50px;
+  overflow: hidden;
+
+}
+li.ui-animate {
+  opacity: 0;
+  max-height: 0;
+  padding: 0 5px;
+}
+li.ui-animate-out {
+  transition: none;
+  -o-transition: none;
+  -moz-transition: none;
+  -webkit-transition: none;
+}
+​
+
+.search-container{
+    // position: fixed;
+    // z-index:999;
+    width:100%;
+    background-color:@bodyBackground;
+    // text-align: center;
+    margin-top:20px;
+    border-bottom: 2px solid @grayLighter
+}
+input[type="search"]{
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 1px 2px;
+  height: 31px;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  background-color: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .2) inset;
+  color: #333;
+  font-size: 13px;
+  font-family: @inputFontFamily;
+  line-height: 1;
+  .transition(border .3s ease-in);
+}
+.input-append,
+.input-prepend {
+  margin-bottom: 5px;
+  white-space: nowrap;
+  font-size: 100%;
+}
+
+.input-append button.btn.search-submit{
+  /* margin-left: -5px; */
+  margin-left:-4px;
+  /* height: 27px; */
+  font-size:1.5em;
+  /* line-height: 1.6; */
+}
+
+span.icon-cog{
+  cursor: pointer;
+  font-size: 1.3em;
+  vertical-align: bottom;
+  padding-right: 0px 5px 0px 0px;
+  font-family: 'fontello';
+  display: inline-block;
+}
+#search-options{
+  font-size: 1em;
+  margin-top:10px;
+  .option-item{
+    display:inline-block;
+  }
+}
+.btn{
+  font-size: 1em;
+}
+.dropdown {
+  font-size: 1em;
+  a{
+    text-decoration: none;
+    color:@textColor;
+  }
+}
+.main-content{
+}
+#novels {
+//  margin-top: 60px;
+  margin-bottom: 2em;
+  .title{
+    margin-left: 1em;
+  }
+  th{
+    background-color: #FCFCFC;
+    text-align:center;
+    font-size:.75em;
+  }
+  th.table-category{
+    width: 8em;
+  }
+  th.table-update-at {
+    font-size: .9em;
+  }
+  td{
+    font-size: 80%;
+    &.table-title{
+      font-size: 100%;
+    }
+    &.table-novel-count{
+      font-size: 130%;
+    }
+    &.table-review-count{
+      font-size: 130%;
+    }
+  }
+}
+#messages{
+  position:fixed;
+  text-align: center;
+  z-index: 999;
+  .opacity(80);
+  i.icon-ok{
+    color:@green;
+  }
+}
+
+.fav{
+  color:@yellow;
+  font-size: 1.5em;
+  cursor:pointer;
+  width:1.5em;
+  height:1.5em;
+  text-align: center;
+}
+
+.fav:hover{
+  color:@orange;
+}
+
+#title-container {
+  > li{
+    display: inline-block;
+    vertical-align: middle;
+  }
+  li:nth-child(1){
+    text-align: center;
+  }
+  li:nth-child(2){
+    width:3.8em;
+    text-align: right;
+  }
+  li:nth-child(3){
+    width:80%;
+  }
+}
+
+[class*="category-"] {
+  border-left-width: 5px ;
+  border-left-style: solid ;
+  border-right-width: 5px ;
+  border-right-style: solid ;
+}
+.category-all{
+  border-color:@grayLighter;
+}
+.category-eva{
+  border-color:#fa808e;
+}
+.category-nade{
+  border-color:#679fca;
+}
+.category-type-moon{
+  border-color:#fff27b;
+}
+.category-muv-luv{
+  border-color:#e6cfae;
+}
+.category-ff{
+  border-color:#66b2ce;
+}
+.category-sammon{
+  border-color:#fdb56d;
+}
+.category-toraha{
+  border-color:#b3de68;
+}
+.category-akamatu{
+  border-color:@grayLighter;
+}
+.category-gs{
+  border-color:#b273b6;
+}
+.category-naruto{
+  border-color:#f881ac;
+}
+.category-zero{
+  border-color: #7fc97f;
+}
+.category-HxH{
+  border-color:darken(@pink, 35%);
+}
+.category-original{
+  border-color:#fb7f71;
+}
+.category-etc{
+  border-color:#7370ac;
+}
+.category-tiraura{
+  border-color:#66c2ae;
+}
+
+
+.pv-xxlarge{
+  color: #FF450F;
+  font-weight: bold;
+}
+.pv-xlarge{
+  color: #FF450F;
+}
+.pv-large{
+  color: @orange;
+}
+.pv-medium{
+  color: @green;
+}
+.pv-small{
+  color: @purple;
+}
+.icon-folder{
+  color:@yellow;
+}
+
+.ajax-progress{
+  position: fixed;
+  top: 5em;
+  left: 48%;
+  z-index:1000;
+}
+
+// Opacity
+.opacity(@opacity) {
+  opacity: @opacity / 100;
+  filter: ~"alpha(opacity=@{opacity;})";
+}
+
+#updated-fav{
+  caption{
+    background-color:darken(@orange,10%);
+    color:@white;
+  }
+}
+
+#updated-favorites-button{
+  font-size:2em;
+}
+
+.counter{
+  padding-top: .5em;
+  padding-bottom: .5em;
+  text-align: center;
+}
+.form-search{
+  text-align: center;
+}
+
+.modal{
+  max-height: 70%;
+}
+.wrapper{
+  background-color:@bodyBackground;
+  font-size: .9em;
+}
+@import "/app/styles/themes/responsive.less";
+

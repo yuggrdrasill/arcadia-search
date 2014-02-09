@@ -1,0 +1,28 @@
+{
+  "name": "Arcadia-searcher",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "growl": "~1.6.0",
+    "coffee-script": "~1.4",
+    "testacular": "~0.4",
+    "grunt": "~0.4",
+    "grunt-reload":"~0.4.0",
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt-contrib": "~0.4"
+  },
+  "scripts": {
+    "test": "testacular start config/testacular.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular/angular-seed"
+  },
+  "author": "yuggr",
+  "license": "MIT"
+}

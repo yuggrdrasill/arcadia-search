@@ -1,0 +1,261 @@
+<div id="messages">
+  <div class="row">
+    <div class="span12">
+      <ul ng-show="info.exist" class="alert alert-info">
+        <li ng-repeat="message in info.messages" fadey="800"> <i class="icon-ok"></i>
+          {{message}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div ui-modal="updatedFavoriteShown" class="fade modal hide" id="updated-favorites-modal" >
+  <p ng-show="!updatedFavoriteShown">
+    チェックリストが空っぽです。タイトル横の☆アイコンをクリックしてチェックリストに入れて、F5などでページを更新してください。
+  </p>
+  <table class="table" id="updated-fav" ng-hide="!updatedFavoriteShown">
+    <caption>過去7日間で更新されたチェックリスト内の小説</caption>
+    <tr>
+      <th class="table-category">
+        <i class="icon-folder"></i>
+        <a href="" ng-click="updatedFavoritePredicate = 'category'; reverse=!reverse">カテゴリ</a>
+        <i ng-class="'icon-arrow-down'" ng-show="updatedFavoritePredicate == 'category' && reverse"></i>
+        <i ng-class="'icon-arrow-up'" ng-show="updatedFavoritePredicate == 'category' && !reverse"></i>
+      </th>
+      <th>
+<a href="" ng-click="updatedFavoritePredicate = 'id'; reverse=!reverse">[ID
+        <i ng-class="'icon-arrow-down'" ng-show="updatedFavoritePredicate == 'id' && reverse"></i>
+        <i ng-class="'icon-arrow-up'" ng-show="updatedFavoritePredicate == 'id' && !reverse"></i>
+        ]</a>
+        <a href="" ng-click="updatedFavoritePredicate = 'title'; reverse=!reverse">タイトル</a>
+        <i ng-class="'icon-arrow-down'" ng-show="updatedFavoritePredicate == 'title' && reverse"></i>
+        <i ng-class="'icon-arrow-up'" ng-show="updatedFavoritePredicate == 'title' && !reverse"></i>
+      </th>
+      <th>
+        <a href="" ng-click="updatedFavoritePredicate = 'updated'; reverse=!reverse">更新日</a>
+        <i ng-class="'icon-arrow-down'" ng-show="updatedFavoritePredicate == 'updated' && reverse"></i>
+        <i ng-class="'icon-arrow-up'" ng-show="updatedFavoritePredicate == 'updated' && !reverse"></i>
+    </th>
+    </tr>
+    <tr ng-repeat ="novel in updatedFavorite | orderBy:updatedFavoritePredicate:reverse">
+        <td class="table-category category-{{novel.category_key}}">
+          <i class="icon-folder"></i>
+          {{novel.category}}
+        </td>
+      <td>
+        <ul id="title-container">
+            <li>
+              <span class="fav"
+                ng-class="getFavoriteIcon(favorites[novel.id])"
+                ng-click="toggleFavorite(novel);checkUpdatedFavorites()"
+                title="この小説をチェックリストに"></span>
+            </li>
+            <li>
+              <span class="table-id">[{{novel.id}}]</span>
+            </li>
+            <li>
+              <a href="{{ARCADIA_URL}}?act=dump&cate={{novel.category_key}}&all={{novel.id}}&n=0" class="title">{{novel.title}}</a>
+            </li>
+          </ul>
+      </td>
+     <td>
+        {{novel.novel_updated_at}}
+      </td>
+    </tr>
+  </table>
+  <div class="modal-footer">
+    <a data-dismiss="modal" role="button" class="btn">Close</a>
+  </div>
+</div>
+<a data-toggle="modal" id="updated-favorites-button" ng-click="checkUpdatedFavorites()" role="button" href="#updated-favorites-modal" accesskey="s" title="チェックリストを表示する"><i class="icon-check"></i></a>
+
+<div class="search-container">
+  <form class="form-search">
+    <div class="input-append input-prepend">
+      <!--
+      <span class="icon-cog">
+        </span>
+      -->
+      <input ng-model="searchPhrase"
+        type="search"
+        class="input-search input-xxlarge search-query"
+        id="search-text"
+        name="searchPhrase"
+        placeholder="オリジナル 完結">
+      <button type="submit"
+          class="btn btn-round search-submit" ng-click="searchNew()"
+          value="検索" title-"検索する"> <i class="icon-search"></i>
+      </button>
+    </div>
+  </form>
+  <!--
+  <div class="row-fluid">
+    <div class="span12">
+      <div id="search-options">
+        <select  ng-controller="CategoriesCtrl" accesskey="c" ng-model="category"
+            name="category" id="select-search-category"
+             ng-options="category.name for category in categories"
+             ng-change="$log.log(category.name)">
+          <option value="">全て</option>
+        </select>
+        <div class="dropdown btn-group option-item" ng-controller="CategoriesCtrl">
+          <a id="menu-category" href="#" role="button"
+              class="btn dropdown-toggle" data-toggle="dropdown">
+            カテゴリ <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="menu-sort">
+            <li class="">
+              <a tabindex="-1" class="category-all" id="search-category-all" ng-click="searchCategory('all')">全て</a>
+            </li>
+            <li class="" ng-repeat="category in categories">
+              <a tabindex="-1" class=" category-{{category.key_name}}"
+                 id="search-category-{{category.key_name}}" ng-click="searchCategory(category.key_name)">{{category.name}}</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="dropdown option-item">
+          <a id="menu-sort" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+            ソート <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="menu-sort">
+            <li class="">
+              <a tabindex="-1" class="" id="search-option-category">カテゴリ</a>
+            </li>
+            <li class="">
+              <a tabindex="-1" class="" id="search-option-range-updated">更新日</a>
+            </li>
+            <li class="">
+              <a tabindex="-1" class="" id="search-option-title">タイトル</a>
+            </li>
+            <li class="">
+              <a tabindex="-1" class="" id="search-option-novelist">投稿者</a>
+            </li>
+            <li class="">
+              <a tabindex="-1" class="" id="search-option-range-pv">PV</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  -->
+  </div>
+
+
+  <div class="counter">
+    <div ng-show="error.exist" class="alert alert-error"> <strong>{{error.message}}</strong>
+    </div>
+    <div ng-hide="resultNone">
+      全
+      <span id="novels-counter">{{countAll}}</span>
+      件中
+      <span id="current-page-no">{{currentPage}}</span>
+      /
+      <span id="page-max">{{pageMax}}</span>
+      ページ目
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <span ng-show="progress" class="ajax-progress">
+    <img src="/img/ajax-loader.gif" alt="wait progress icon" width="32" height="32"></span>
+  <div class="" ng-hide="resultNone">
+    <table id="novels" class="centered table">
+      <thead>
+        <tr>
+          <th class="table-category">
+            <i class="icon-sort"></i>
+            <i class="icon-folder"></i>
+            カテゴリ
+          </th>
+          <!-- <th class="table-id">ID</th>
+        -->
+        <th class="table-title">
+          <i class="icon-sort"></i>
+          タイトル
+        </th>
+        <th class="table-novelist">
+          <i class="icon-sort"></i>
+          投稿者
+        </th>
+        <th class="table-novel-count">
+          <i class="icon-sort"></i>
+          <br>
+          記
+          <br>
+          事
+          <br>数</th>
+        <th class="table-review-count">
+          <i class="icon-sort"></i>
+          <br>
+          感
+          <br>
+          想
+          <br>数</th>
+        <th class="table-pv">
+          <i class="icon-sort"></i>
+          PV
+        </th>
+        <th class="table-update-at">
+          <i class="icon-sort"></i>
+          <br>
+          更新
+          <br>日付</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  ng-repeat ="novel in novels">
+        <td class="table-category category-{{novel.category_key}}">
+          <i class="icon-folder"></i>
+          {{novel.category}}
+        </td>
+        <td class="table-title">
+          <ul id="title-container">
+            <li>
+              <span class="fav"
+                ng-class="getFavoriteIcon(favorites[novel.id])"
+                ng-click="toggleFavorite(novel)"
+                title="この小説をチェックリストに"></span>
+            </li>
+            <li>
+              <span class="table-id">[{{novel.id}}]</span>
+            </li>
+            <li>
+              <a href="{{ARCADIA_URL}}?act=dump&cate={{novel.category_key}}&all={{novel.id}}&n=0" class="title">{{novel.title}}</a>
+            </li>
+          </ul>
+        </td>
+        <td class="table-novelist">{{novel.novelist}}</td>
+        <td class="table-novel-count">
+          <a href="{{ARCADIA_URL}}?act=dump&cate={{novel.category_key}}&all={{novel.id}}&amp;act=all_msg"
+              class="title" title="全件表示">{{novel.novel_count}}</a>
+        </td>
+        <td class="table-review-count">
+          <a href="{{ARCADIA_URL}}?act=impression&amp;cate={{novel.category_key}}&no={{novel.id}}&page=1"
+                class="title" title="感想板">
+            {{novel.review_count}}
+            <span ng-show="novel.category_key == 'tiraura'">*</span>
+          </a>
+        </td>
+        <td class="table-pv">
+          <span ng-hide="novel.pv == null"
+                ng-class="classifyPV(novel.pv)">{{novel.pv | number}} {{classPV}}</span>
+        </td>
+        <td class="table-update-at">{{novel.novel_updated_at}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination pagination-small">
+    <ul ng-show="isPagination" class="page-list">
+      <li ng-repeat="page in pagination">
+        <span id="{{page.id}}" class="{{page.class}}"
+                ng-click="pageMove(page.name)"
+                ng-disabled="page.disabled">{{page.name}}</span>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+<div class="push"></div>

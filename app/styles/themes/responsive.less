@@ -1,0 +1,47 @@
+
+@media (max-width: 767px){
+  .ajax-progress{
+    top: 0px;
+  }
+}
+
+@media (max-width: 519px) {
+/* Single Fluid Width Column (iPhone) */
+  #messages{
+    // width:80%;
+  }
+  #novels {
+    list-style:none;
+    .title{
+      margin:0;
+    }
+    th.table-title{
+  //      width: 10em;
+    }
+    td.table-title{
+  //      width: 10em;
+    }
+  }
+  tbody tr{
+    display: block;
+  }
+  tbody td{
+    display: list-item;
+  }
+  thead th{
+    display: none;
+  }
+  td{
+    font-size:100%;
+    &.table-id:before {content: "ID  "; }
+    &.table-novel-count:after {content: " 記事"; }
+    &.table-review-count:before {content: "感想"; }
+    &.table-review-count:after {content: " 件"; }
+    &.table-pv:after {content: " PV"; }
+    &.table-update-at {
+      padding-bottom:4em;
+      border-bottom: 3px solid #DDD;
+    }
+  }
+}
+
